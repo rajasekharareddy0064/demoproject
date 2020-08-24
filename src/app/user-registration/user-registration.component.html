@@ -1,0 +1,69 @@
+
+<div class="signup-form">
+    <form [formGroup]="detailsForm" autocomplete="off" (ngSubmit)="saveRegForm(detailsForm.value)">
+    <h2>Register</h2>
+
+        <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="firstName" name="firstName" placeholder="First Name" >
+         </div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="lastName" name="lastName" placeholder="Last Name" >  
+      </div>        	
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input type="email"  formControlName="email" class="form-control" name="email" placeholder="Email" >
+              <span class="text-danger"   *ngIf="detailsForm.controls['email'].invalid && (detailsForm.controls['email'].dirty || detailsForm.controls['email'].touched)"> Please enter correct Email format  </span>  
+              <!-- <span class="text-danger"   *ngIf="detailsForm.controls['email'].hasErrors('email')">  Email Required    </span>         -->
+            </div>
+            <div class="col">
+              <input type="text"  formControlName="mobile" minlength="10" maxlength="10" class="form-control" name="mobile" placeholder="Mobile" >
+            
+            </div>
+          </div>            
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+
+              <div class="form-check-inline" *ngFor="let gender of genderData">
+                <input type="radio" class="radio-inline" formControlName="Gender"
+                   [value]="gender.genderValue">&nbsp;{{gender?.genderName}}
+              </div>
+             
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" name="address" formControlName="address"  placeholder="Address">          
+            </div>
+          </div>            
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input type="password" class="form-control" formControlName="password" name="password" placeholder="Password" minlength="8">
+              <span class="text-danger" *ngIf="detailsForm.get('password').hasError('minlength') ">Minimum Length is 8 characters </span>    
+              <!-- <span class="text-danger"   *ngIf="detailsForm.controls['password'].invalid && (detailsForm.controls['password'].dirty || detailsForm.controls['password'].touched)">    First Name is required     </span>      -->
+            </div>
+            <div class="col">
+               <input type="password" class="form-control" formControlName="confirmPassword" name="confirmPassword"  placeholder="Confirm Password" >
+               <!-- <span class="text-danger"   *ngIf="detailsForm.controls['confirmPassword'].invalid && (detailsForm.controls['confirmPassword'].dirty || detailsForm.controls['confirmPassword'].touched)">    First Name is required     </span>      -->
+                <!-- <span  class="text-danger"   *ngIf="detailsForm.get('confirmPassword').hasError('required')">Confirm password
+                        Required...! </span> -->
+               <span   class="text-danger" *ngIf="detailsForm.get('confirmPassword').hasError('notMatch')">Password
+                        Mismatch...!</span>
+             
+              </div>
+          </div>            
+        </div>
+ 
+    <div class="form-group">
+            <button type="submit" [disabled]="detailsForm.invalid" class="btn btn-info btn-lg btn-block">Register Now</button>
+        </div>
+    </form>
+
+ 
+  </div>

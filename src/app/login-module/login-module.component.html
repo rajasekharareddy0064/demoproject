@@ -1,0 +1,33 @@
+<div class="login-form">
+  <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">
+    <h2 class="text-center">Sign in</h2>
+    <div class="form-group">
+     
+        <input type="email" class="form-control"  placeholder="Email" formControlName="email" required>
+        <span class="text-danger"   *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"> Please enter correct Email format  </span>  
+    
+    </div>
+    <div class="form-group">
+    
+        <input type="password" class="form-control"  placeholder="Password" formControlName="password" required>
+        <span class="text-danger"   *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"> Password Required  </span>  
+      
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-info  btn-block">Sign in</button>
+    </div>
+  </form>
+</div>
+
+<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+  <div class="toast-header">
+    <img src="..." class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Alert</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+   Login Details Not Found
+  </div>
+</div>
